@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LMS">
         <activity
+            android:name=".signin"
+            android:exported="false" />
+        <activity
             android:name=".ChooseReg"
             android:exported="false" />
         <activity

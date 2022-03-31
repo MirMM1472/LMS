@@ -31,4 +31,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(MainActivity.this,ChooseReg.class);
         startActivity(i);
     }
+
+    public void OnSignInClick(View view){
+        Intent i = new Intent(MainActivity.this,signin.class);
+        startActivity(i);
+    }
 }
