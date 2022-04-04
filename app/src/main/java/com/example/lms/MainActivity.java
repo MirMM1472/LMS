@@ -25,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.yellow_200));
         }
+
+        //for testing only
+//        Intent i = new Intent(MainActivity.this,Register.class);
+//        i.putExtra("MAIN_ACT_KEY", "SIGNIN");
+//        startActivity(i);
     }
 
     public void OnRegisterClick(View view){
@@ -33,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void OnSignInClick(View view){
-        Intent i = new Intent(MainActivity.this,signin.class);
+        Intent i = new Intent(MainActivity.this,Register.class);
+        i.putExtra("MAIN_ACT_KEY", "SIGNIN");
         startActivity(i);
     }
 }

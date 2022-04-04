@@ -30,13 +30,13 @@ public class ChooseReg extends AppCompatActivity {
 
     public void OnRegisterAsLibClick(View view){
         Intent i = new Intent(ChooseReg.this,Register.class);
-        i.putExtra("message_key", "Lib");
+        i.putExtra("SENDER_KEY", "LIB");
         startActivity(i);
     }
 
     public void OnRegisterAsStdClick(View view){
         Intent i = new Intent(ChooseReg.this,Register.class);
-        i.putExtra("message_key", "std");
+        i.putExtra("SENDER_KEY", "STD");
         startActivity(i);
     }
 }
