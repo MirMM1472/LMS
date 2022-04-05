@@ -88,29 +88,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-            <EditText
-                android:id="@+id/Birthday"
-                android:clickable="false"
-                android:cursorVisible="false"
-                android:focusable="false"
-                android:focusableInTouchMode="false"
-
-                android:layout_width="300dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/custom_input"
-                android:drawableStart="@drawable/ic_calender"
-                android:drawablePadding="12dp"
-                android:ems="10"
-                android:hint="Date of  2"
-                android:inputType="date"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                android:textSize="20sp"
-
-                />
-
             <Button
                 android:id="@+id/Register"
                 android:layout_width="250dp"

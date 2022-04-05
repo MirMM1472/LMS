@@ -66,15 +66,15 @@ public class Register extends AppCompatActivity {
     }
 
     public void SignUpTxtClick(View view){
-//        TextView txtSign = findViewById(R.id.txtSignup);
-//        if(txtSign.getText().toString().equals("Sign In")){
-//            Intent i = new Intent(Register.this,Register.class);
-//            i.putExtra("MAIN_ACT_KEY", "SIGNIN");
-//            startActivity(i);
-//        }else{
-//            Intent i = new Intent(Register.this, ChooseReg.class);
-//            startActivity(i);
-//        }
+        TextView txtSign = findViewById(R.id.txtSignup);
+        if(txtSign.getText().toString().equals("Sign In")){
+            Intent i = new Intent(Register.this,Register.class);
+            i.putExtra("MAIN_ACT_KEY", "SIGNIN");
+            startActivity(i);
+        }else{
+            Intent i = new Intent(Register.this, ChooseReg.class);
+            startActivity(i);
+        }
 
     }
 
@@ -82,18 +82,28 @@ public class Register extends AppCompatActivity {
         TextView txtSign = findViewById(R.id.btnSignup);
         Log.i("INFORMATION:: ", txtSign.getText().toString());
 
+        EditText email = findViewById(R.id.EmailAddress);
+        EditText password = findViewById(R.id.Password);
+        EditText SecurityKey = findViewById(R.id.SecurityKey);
+
+        //values
+        String EmailVal = email.getText().toString();
+        String PasswordVal = password.getText().toString();
+        String SecurityKeyVal = SecurityKey.getText().toString();
+        Pattern VALID_EMAIL_ADDRESS_REGEX =
+                Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(EmailVal);
+        Boolean IsMatch = matcher.find();
+
+        Intent RI = getIntent();
+        CharSequence Reg_Chooser = RI.getStringExtra("SENDER_KEY");
+
         if(txtSign.getText().toString().equals("Sign In")){
             //Run api if access granted then move to dash board
             //extraction
-            EditText email = findViewById(R.id.EmailAddress);
-            EditText password = findViewById(R.id.Password);
 
-            //values
-            String EmailVal = email.getText().toString();
-            String PasswordVal = email.getText().toString();
-            Pattern VALID_EMAIL_ADDRESS_REGEX =
-                    Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
+            Log.i("INFORMATIONIsMatch", String.valueOf(IsMatch));
             Log.i("INFORMATIONEmailVal", EmailVal);
             Log.i("INFORMATIONPasswordVal", PasswordVal);
 
@@ -101,11 +111,11 @@ public class Register extends AppCompatActivity {
                 Toast.makeText(Register.this,"Please enter email",Toast.LENGTH_SHORT).show();
             }else if(PasswordVal.matches("")){
                 Toast.makeText(Register.this,"Please enter Password",Toast.LENGTH_SHORT).show();
+            }else if(!IsMatch){
+                Toast.makeText(Register.this,"Invalid email address",Toast.LENGTH_SHORT).show();
             }
 
-            Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(EmailVal);
-            Boolean IsMatch = matcher.find();
-            Log.i("INFORMATIONIsMatch", String.valueOf(IsMatch));
+
 //            if(email.getText().toString().length() > 0 && email.getText().toString().matches("/^([a-zA-Z0-9_\\.-]+\\@[\\da-z\\.-]+\\.[a-z\\.]{2,6})$/;\n")){
 //                Toast.makeText(Register.this,"Please enter correct email address",Toast.LENGTH_SHORT).show();
 //            }
@@ -114,8 +124,28 @@ public class Register extends AppCompatActivity {
 //            startActivity(i);
         }else{
             //Run api if record not found then go to register step 2
-            Intent i = new Intent(Register.this, ChooseReg.class);
-            startActivity(i);
+            if(EmailVal.matches("")){
+                Toast.makeText(Register.this,"Please enter email",Toast.LENGTH_SHORT).show();
+            }else if(PasswordVal.matches("")){
+                Toast.makeText(Register.this,"Please enter Password",Toast.LENGTH_SHORT).show();
+            }else if(!IsMatch){
+                Toast.makeText(Register.this,"Invalid email address",Toast.LENGTH_SHORT).show();
+            }else if(Reg_Chooser.equals("LIB")){
+                if(SecurityKeyVal.matches("")){
+                    Toast.makeText(Register.this,"please enter security key",Toast.LENGTH_SHORT).show();
+                }else{
+                    Intent i = new Intent(Register.this,RegisterStepTwo.class);
+                    i.putExtra("SENDER_KEY", "LIB");
+                    startActivity(i);
+                }
+            }else{
+
+                    Intent i = new Intent(Register.this,RegisterStepTwo.class);
+                    i.putExtra("SENDER_KEY", "STD");
+                    startActivity(i);
+
+            }
+
         }
     }
 }

@@ -9,15 +9,18 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegisterStepTwo extends AppCompatActivity {
     EditText editText;
@@ -54,7 +57,7 @@ public class RegisterStepTwo extends AppCompatActivity {
 
     }
 
-    public static class DatePickerDialogTheme1 extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+    public static class DatePickerDialogTheme1 extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState){
@@ -74,7 +77,66 @@ public class RegisterStepTwo extends AppCompatActivity {
             EditText textview = getActivity().findViewById(R.id.DateOfBirth);
 
             textview.setText(day + "-" + (month+1) + "-" + year);
+        }
+    }
 
+    public void OnClickRegister(View view){
+        //Extraction
+        EditText firstname = findViewById(R.id.FirstName);
+        EditText lastname = findViewById(R.id.LastName);
+        EditText phonenumber = findViewById(R.id.PhoneNumber);
+        EditText gender = findViewById(R.id.Gender);
+        EditText dob = findViewById(R.id.DateOfBirth);
+
+        //values
+        String firstnameval = firstname.getText().toString();
+        String lastnameval = lastname.getText().toString();
+        Editable phonenumberval = phonenumber.getText();
+        String genderval = gender.getText().toString();
+        String dobval = dob.getText().toString();
+
+        Log.i("FIRST NAME", firstnameval);
+        Log.i("LAST NAME", lastnameval);
+        Log.i("PHONE NUMBER", String.valueOf(phonenumberval));
+        Log.i("Gender", genderval);
+        Log.i("DATE OF BIRTH", dobval);
+
+        if(firstnameval.matches("") &&
+                lastnameval.matches("") &&
+                phonenumberval.length() == 0 &&
+                genderval.matches("") &&
+                dobval.matches("")
+        ){
+            Toast.makeText(RegisterStepTwo.this,"All fields are required",Toast.LENGTH_SHORT).show();
+        }else{
+            int Currentyear = Calendar.getInstance().get(Calendar.YEAR);
+            String[] arrOfStr = dobval.split("-", -2);
+            int selectedYear = Integer.parseInt(arrOfStr[2]);
+
+            System.out.println(arrOfStr[2]);
+            int diff = Currentyear - selectedYear;
+            if(diff < 14){
+                Toast.makeText(RegisterStepTwo.this,"You must be 14 year old",Toast.LENGTH_SHORT).show();
+            }else {
+
+                Log.i("FIRST NAME", firstnameval);
+                Log.i("LAST NAME", lastnameval);
+                Log.i("PHONE NUMBER", String.valueOf(phonenumberval));
+                Log.i("Gender", genderval);
+                Log.i("DATE OF BIRTH", dobval);
+
+                Intent RI = getIntent();
+                CharSequence Reg_Chooser = RI.getStringExtra("SENDER_KEY");
+
+                if(Reg_Chooser.equals("LIB")){
+                    Intent i = new Intent(RegisterStepTwo.this, dashboard.class);
+                    startActivity(i);
+                }else{
+                    Intent i = new Intent(RegisterStepTwo.this, student_dashboard.class);
+                    startActivity(i);
+                }
+
+            }
         }
     }
 

@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/LMS/app/src/main/res/layout/activity_dashboard.xml" value="0.17552083333333332" />
+        <entry key="..\:/LMS/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/LMS/app/src/main/res/layout/activity_register.xml" value="0.11302083333333333" />
+        <entry key="..\:/LMS/app/src/main/res/layout/activity_register_step_two.xml" value="0.25416666666666665" />
+        <entry key="..\:/LMS/app/src/main/res/layout/activity_student_dashboard.xml" value="0.25416666666666665" />
+        <entry key="..\:/LMS/app/src/main/res/layout/dashboard_box.xml" value="0.17552083333333332" />
         <entry key="..\:/LMS_Android_App/app/src/main/res/drawable-v24/custom_input.xml" value="0.2265" />
         <entry key="..\:/LMS_Android_App/app/src/main/res/drawable-v24/ic_calender.xml" value="0.2265" />
         <entry key="..\:/LMS_Android_App/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2265" />

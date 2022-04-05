@@ -131,6 +131,7 @@
                 android:layout_width="250dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="15dp"
+                android:onClick="OnClickRegister"
                 android:text="Register"
                 android:textSize="18sp"
                 app:backgroundTint="#ffcc00"
